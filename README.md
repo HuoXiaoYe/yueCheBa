@@ -1,17 +1,26 @@
 # 我爱电子商务 我爱雄总 
-#
+> design by huoxiaoye
 
-A new Flutter project.
+> 后端部分尚未完成，预计本周三之前完成.
 
-## Getting Started
+### A flutter App
+> if you hava a flutter environment please clone and done
+* flutter run
 
-This project is a starting point for a Flutter application.
+### screenshot
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="./images/1.png" width="200" height="400">
+<img src="./images/2.png" width="200" height="400">
+<img src="./images/3.png" width="200" height="400">
+<img src="./images/4.png" width="200" height="400">
+<img src="./images/5.png" width="200" height="400">
+<img src="./images/6.png" width="200" height="400">
+<img src="./images/7.png" width="200" height="400">
+<img src="./images/8.png" width="200" height="400">
+<img src="./images/9.png" width="200" height="400">
+<img src="./images/10.png" width="200" height="400">
+<img src="./images/11.png" width="200" height="400">
+<img src="./images/12.png" width="200" height="400">
+<img src="./images/13.png" width="200" height="400">
+<img src="./images/14.png" width="200" height="400">
+<img src="./images/15.png" width="200" height="400">
