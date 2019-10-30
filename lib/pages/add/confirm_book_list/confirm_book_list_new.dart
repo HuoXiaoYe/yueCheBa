@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import "package:flutter/material.dart";
+import 'package:flutter/material.dart' as prefix0;
 import '../../.././main.dart';
 import "../../../api/get_data.dart";
 import 'package:dio/dio.dart';
@@ -38,7 +39,7 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
     );
   }
 
-  postData(url, params,BuildContext context) async {
+  postData(url, params, BuildContext context) async {
     // await request("https://www.easy-mock.com/mock/5db8ed7be75ad470035b2d05/example").then((val) {
     //   print(val);
     // });
@@ -61,16 +62,17 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
     var response2 = jsonDecode(response.toString());
     print(response2["success"] == "200");
     if (response2["success"] == "200") {
-      this.setState((){
+      Navigator.of(context).pop();
+      this.setState(() {
         this.isShowLoading = true;
       });
       print("loading");
       print(this.isShowLoading);
       print(response2);
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => new App()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => new App()));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final info = widget.info;
@@ -110,54 +112,59 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                       children: <Widget>[
                         InkWell(
                           onTap: () {
+                            this.setState(() {
+                              this.isShowLoading = false;
+                            });
                             showDialog(
-                                // 传入 context
-                                context: context,
-                                // 构建 Dialog 的视图
-                                builder: (_) => this.isShowLoading ? Container() : 
-                                      // Material(
-                                      // type: MaterialType.transparency,
-                                      // child: 
-                                      new Center(
-                                        child: new SizedBox(
-                                          width: 120.0,
-                                          height: 120.0,
-                                          child: new Container(
-                                            decoration: ShapeDecoration(
-                                              color: Color(0xffffffff),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(8.0),
-                                                ),
+                              // 传入 context
+                              context: context,
+                              // 构建 Dialog 的视图
+                              builder: (_) => this.isShowLoading
+                                  ? Container()
+                                  :
+                                  // Material(
+                                  // type: MaterialType.transparency,
+                                  // child:
+                                  new Center(
+                                      child: new SizedBox(
+                                        width: 120.0,
+                                        height: 120.0,
+                                        child: new Container(
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xffffffff),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(8.0),
                                               ),
                                             ),
-                                            child: new Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                new CircularProgressIndicator(),
-                                                new Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 20.0,
-                                                  ),
-                                                  child: new Text(
-                                                    "loading",
-                                                    style: new TextStyle(
-                                                        fontSize: 12.0),
-                                                  ),
+                                          ),
+                                          child: new Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              new CircularProgressIndicator(),
+                                              new Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 20.0,
                                                 ),
-                                              ],
-                                            ),
+                                                child: new Text(
+                                                  "loading",
+                                                  style: new TextStyle(
+                                                      fontSize: 12.0),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    );
+                                    ),
+                            );
                             // 确认发布点击事件
                             // print(this.info);
-                            postData("http://127.0.0.1:8080/post",info,context);
+                            postData(
+                                "http://127.0.0.1:8080/post", info, context);
                             // var res =
                             //     request("http://127.0.0.1:8080", this.info);
                             // print(res);
@@ -209,7 +216,6 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
     );
   }
 }
-
 
 // class ConfirmBookList extends StatelessWidget {
 //   final Map info;
