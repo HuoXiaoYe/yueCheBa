@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
 import '../../config/book_info.dart';
 import './book_item/book_item.dart';
+import 'package:dio/dio.dart';
 
 class BookInfo extends StatefulWidget {
   @override
@@ -9,7 +12,8 @@ class BookInfo extends StatefulWidget {
 
 class _BookInfoState extends State<BookInfo>
     with SingleTickerProviderStateMixin {
-  List<Map> BaseInfo = List(20);
+  List<Map> BaseInfo = [];
+  List<Map> ShowInfo = [];
   TabController _controller;
   @override
   void initState() {
@@ -32,9 +36,13 @@ class _BookInfoState extends State<BookInfo>
   }
 
   Future _loadData() async {
-    // this.setState(() {
-    //   this.BaseInfo.add({});
-    // });
+    Dio dio = new Dio();
+    var response = await dio.post("http://10.130.7.36:8080/getData");
+    var responseData = jsonDecode(response.toString());
+    print(responseData[0]);
+    this.setState(() {
+      this.BaseInfo.insert(0,responseData[0]);
+    });
   }
 
   @override
