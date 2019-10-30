@@ -219,9 +219,12 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                     ),
                   ),
                   Container(
-                    // 显示false 之后为true
+                    // 先false 发布订单之后设置为true
                     child: this.isShowLoading
                         ? Container(
+                          width: 120,
+                          height: 120,
+                          color: Colors.red,
                             child: InkWell(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
