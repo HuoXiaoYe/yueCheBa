@@ -52,8 +52,17 @@ func handleGetData(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("连接数据库失败")
 	}
-	var data, _ = conn.Do("lrange", "booklist", 0, -1)
-	fmt.Fprintln(w, data)
+	var data, _ = redis.ByteSlices(conn.Do("lrange", "booklist", 0, -1))
+
+	var strSlice = make([]string, 0)
+	for _, v := range data {
+		var v2 bookList
+		json.Unmarshal(v, &v2)
+		var res, _ = json.Marshal(v2)
+		strSlice = append(strSlice, string(res))
+	}
+	var res2, _ = json.Marshal(strSlice)
+	fmt.Fprintln(w, string(res2))
 }
 
 func allowCROS(w http.ResponseWriter) {
@@ -65,5 +74,6 @@ func allowCROS(w http.ResponseWriter) {
 
 func main() {
 	http.HandleFunc("/postData", handleReceiveData)
+	http.HandleFunc("/getData", handleGetData)
 	http.ListenAndServe("0.0.0.0:8080", nil)
 }
