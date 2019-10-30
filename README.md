@@ -1,7 +1,10 @@
 # 我爱电子商务 我爱雄总 
 > design by huoxiaoye
 
-> 后端部分尚未完成，预计本周三之前完成.
+> 因为时间,后端部分只完成了两个接口.保存新的订单和将订单返回给flutter.
+> 该项目告一段落-----
+> 欢迎issue star
+> 霍小叶 继续加油呀.
 
 ### A flutter App
 > if you hava a flutter environment please clone and done
