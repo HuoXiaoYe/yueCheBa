@@ -71,6 +71,18 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
       print("loading");
       print(this.isShowLoading);
       print(response2);
+      // Fluttertoast.showToast(
+      //     msg: "This is Center Short Toast",
+      //     toastLength: Toast.LENGTH_SHORT,
+      //     gravity: ToastGravity.CENTER,
+      //     timeInSecForIos: 1,
+      //     backgroundColor: Colors.red,
+      //     textColor: Colors.black);
+      // showDialog;
+      // showDialog().then((val)=>{
+
+      // })
+      // showDialog().timeout(Decora)
       // await Future.delayed(Duration(milliseconds:100), () {
       //   Navigator.of(context)
       //       .push(MaterialPageRoute(builder: (context) => new App()));
@@ -162,7 +174,7 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                                             top: 20.0,
                                           ),
                                           child: new Text(
-                                            "loading",
+                                            "正在生成新的订单",
                                             style:
                                                 new TextStyle(fontSize: 12.0),
                                           ),
@@ -218,28 +230,54 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                       ],
                     ),
                   ),
-                  Container(
-                    // 先false 发布订单之后设置为true
-                    child: this.isShowLoading
-                        ? Container(
-                          width: 120,
-                          height: 120,
-                          color: Colors.red,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => new App()));
-                              },
-                            ),
-                          )
-                        : Container(),
-                  )
+                  // Container(
+                  //   // 先false 发布订单之后设置为true
+                  //   child: this.isShowLoading
+                  //       ? Container(
+                  //           width: 120,
+                  //           height: 120,
+                  //           color: Colors.red,
+                  //           child: SnackBarButton()
+                  //           // InkWell(
+                  //           //   onTap: () {
+                  //           //     Scaffold.of(context).showSnackBar(SnackBar(
+                  //           //       content: Text('Processing...'),
+                  //           //       action: SnackBarAction(
+                  //           //         label: 'OK',
+                  //           //         onPressed: () {},
+                  //           //       ),
+                  //           //     ));
+                  //           //     // Navigator.of(context).push(MaterialPageRoute(
+                  //           //     //     builder: (context) => new App()));
+                  //           //   },
+                  //           // ),
+                  //           )
+                  //       : Container(),
+                  // )
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class SnackBarButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      child: Text('Open SnackBar'),
+      onPressed: () {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('Processing...'),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+          ),
+        ));
+      },
     );
   }
 }

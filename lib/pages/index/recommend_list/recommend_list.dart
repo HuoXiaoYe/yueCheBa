@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../config/recommend.dart';
 import '../place_detail/place_detail.dart';
-
 class RecommendList extends StatefulWidget {
   @override
   _RecommendListState createState() => _RecommendListState();
