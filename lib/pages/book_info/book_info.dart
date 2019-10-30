@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import '../../config/book_info.dart';
 import './book_item/book_item.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class BookInfo extends StatefulWidget {
   @override
@@ -10,7 +9,7 @@ class BookInfo extends StatefulWidget {
 
 class _BookInfoState extends State<BookInfo>
     with SingleTickerProviderStateMixin {
-  List<Map> BaseInfo = [];
+  List<Map> BaseInfo = List(20);
   TabController _controller;
   @override
   void initState() {
@@ -31,8 +30,11 @@ class _BookInfoState extends State<BookInfo>
       style: TextStyle(fontSize: 14),
     );
   }
-  Future<Null> _loadData() async {
 
+  Future _loadData() async {
+    // this.setState(() {
+    //   this.BaseInfo.add({});
+    // });
   }
 
   @override
@@ -55,11 +57,10 @@ class _BookInfoState extends State<BookInfo>
           child: TabBarView(
             controller: _controller,
             children: <Widget>[
-             RefreshIndicator(
-               child: BookItem(BaseInfo),
-               onRefresh: _loadData,
-             ),
-              
+              RefreshIndicator(
+                child: BookItem(BaseInfo),
+                onRefresh: _loadData,
+              ),
               BookItem(BaseInfo),
               BookItem(BaseInfo),
               BookItem(BaseInfo),
