@@ -12,6 +12,7 @@ class BookInfo extends StatefulWidget {
 
 class _BookInfoState extends State<BookInfo>
     with SingleTickerProviderStateMixin {
+  var index = 0;
   List<Map> BaseInfo = [];
   TabController _controller;
   @override
@@ -40,11 +41,15 @@ class _BookInfoState extends State<BookInfo>
     var responseData = jsonDecode(response.toString());
     // print(responseData);
     this.setState(() {
+      this.BaseInfo = [];
+      bookInfo.removeRange(0,this.index); //范围删除
       this.BaseInfo = bookInfo;
-      var index = 0;
+      // 删除元素
+      this.index = 0;
       responseData.forEach((val) {
-        this.BaseInfo.insert(index, val);
-        index++;
+        this.BaseInfo.insert(this.index, val);
+        this.index++;
+        print(index);
       });
     });
   }
