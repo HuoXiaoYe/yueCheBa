@@ -18,6 +18,7 @@ class ConfirmBookList extends StatefulWidget {
 }
 
 class _ConfirmBookListState extends State<ConfirmBookList> {
+  var _scaffoldkey = new GlobalKey<ScaffoldState>();
   bool isShowLoading = false;
   // Map info = Widget.info;
   // Widget.canUpdate(oldWidget, newWidget)
@@ -66,15 +67,7 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
       this.setState(() {
         this.isShowLoading = true;
       });
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text("恭喜您成功发布订单"),
-          action:SnackBarAction(
-              label: "ok",
-              onPressed: (){},
-          )
-        )
-      );
+
       print("loading");
       print(this.isShowLoading);
       print(response2);
@@ -95,6 +88,7 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
   Widget build(BuildContext context) {
     final info = widget.info;
     return Scaffold(
+      key: _scaffoldkey,
       appBar: AppBar(
         title: Text("确认订单"),
       ),
@@ -139,51 +133,49 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                               // 传入 context
                               context: context,
                               // 构建 Dialog 的视图
-                              builder: (_) => this.isShowLoading
-                                  ? Container()
-                                  :
+                              builder: (_) =>
                                   // Material(
                                   // type: MaterialType.transparency,
                                   // child:
                                   new Center(
-                                      child: new SizedBox(
-                                        width: 120.0,
-                                        height: 120.0,
-                                        child: new Container(
-                                          decoration: ShapeDecoration(
-                                            color: Color(0xffffffff),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
-                                          child: new Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              new CircularProgressIndicator(),
-                                              new Padding(
-                                                padding: const EdgeInsets.only(
-                                                  top: 20.0,
-                                                ),
-                                                child: new Text(
-                                                  "loading",
-                                                  style: new TextStyle(
-                                                      fontSize: 12.0),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                child: new SizedBox(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  child: new Container(
+                                    decoration: ShapeDecoration(
+                                      color: Color(0xffffffff),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8.0),
                                         ),
                                       ),
                                     ),
+                                    child: new Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        new CircularProgressIndicator(),
+                                        new Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 20.0,
+                                          ),
+                                          child: new Text(
+                                            "loading",
+                                            style:
+                                                new TextStyle(fontSize: 12.0),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                             );
                             // 确认发布点击事件
                             // print(this.info);
-                            
+
                             // var res =
                             //     request("http://127.0.0.1:8080", this.info);
                             // print(res);
@@ -225,6 +217,19 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                         )
                       ],
                     ),
+                  ),
+                  Container(
+                    // 显示false 之后为true
+                    child: this.isShowLoading
+                        ? Container(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => new App()));
+                              },
+                            ),
+                          )
+                        : Container(),
                   )
                 ],
               ),
