@@ -13,7 +13,6 @@ class BookInfo extends StatefulWidget {
 class _BookInfoState extends State<BookInfo>
     with SingleTickerProviderStateMixin {
   List<Map> BaseInfo = [];
-  List<Map> ShowInfo = [];
   TabController _controller;
   @override
   void initState() {
@@ -39,9 +38,14 @@ class _BookInfoState extends State<BookInfo>
     Dio dio = new Dio();
     var response = await dio.post("http://10.130.7.36:8080/getData");
     var responseData = jsonDecode(response.toString());
-    print(responseData[0]);
+    // print(responseData);
     this.setState(() {
-      this.BaseInfo.insert(0,responseData[0]);
+      this.BaseInfo = bookInfo;
+      var index = 0;
+      responseData.forEach((val) {
+        this.BaseInfo.insert(index, val);
+        index++;
+      });
     });
   }
 
