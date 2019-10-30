@@ -66,10 +66,28 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
       this.setState(() {
         this.isShowLoading = true;
       });
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text("恭喜您成功发布订单"),
+          action:SnackBarAction(
+              label: "ok",
+              onPressed: (){},
+          )
+        )
+      );
       print("loading");
       print(this.isShowLoading);
       print(response2);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => new App()));
+      // await Future.delayed(Duration(milliseconds:100), () {
+      //   Navigator.of(context)
+      //       .push(MaterialPageRoute(builder: (context) => new App()));
+      // });
+      // widget.dismissDialog(
+
+      //     //将关闭 dialog的方法传递到调用的页面.
+      //     () {
+      //   Navigator.of(context).pop();
+      // });
     }
   }
 
@@ -115,6 +133,8 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                             this.setState(() {
                               this.isShowLoading = false;
                             });
+                            postData(
+                                "http://127.0.0.1:8080/post", info, context);
                             showDialog(
                               // 传入 context
                               context: context,
@@ -163,8 +183,7 @@ class _ConfirmBookListState extends State<ConfirmBookList> {
                             );
                             // 确认发布点击事件
                             // print(this.info);
-                            postData(
-                                "http://127.0.0.1:8080/post", info, context);
+                            
                             // var res =
                             //     request("http://127.0.0.1:8080", this.info);
                             // print(res);
