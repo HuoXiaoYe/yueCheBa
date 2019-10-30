@@ -5,13 +5,19 @@ import "package:flutter/material.dart";
 class BookItem extends StatelessWidget {
   Widget _desc(String title, String desc){
     return Container(
+      height: 30,
+      // child: Text(title),
       child: Row(
         children: <Widget>[
-          ListTile(
-            leading: Container(
-              child: Text(title),
-            ),
-            title: Text(desc),
+          Container(
+            height: 30,
+            padding: EdgeInsets.only(right: 10),
+            alignment: Alignment.centerRight,
+            width: 120,
+            child: Text(title+" : "),
+          ),
+          Container(
+            child: Text(desc),
           )
         ],
       ),
@@ -26,7 +32,7 @@ class BookItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container( // 头像
-              margin: EdgeInsets.only(top: 6,left: 10),
+              margin: EdgeInsets.only(top: 15,left: 45,bottom: 10),
               alignment: Alignment.center,
               width: 40,
               height: 40,
@@ -41,9 +47,12 @@ class BookItem extends StatelessWidget {
               ),
             ),
             _desc("时间",data["time"]),
-            _desc("时间",data["time"]),
-            _desc("时间",data["time"]),
-            _desc("时间",data["time"]),
+            Divider(),
+            _desc("出发地点",data["startAddr"]),
+            Divider(),
+            _desc("目的地",data["endAddr"]),
+            Divider(),
+            _desc("人数",data["number"]),
           ],
         ),
       ),
