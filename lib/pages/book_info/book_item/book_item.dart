@@ -22,7 +22,7 @@ class BookItem extends StatelessWidget {
     );
   }
 
-  Widget _item(data) {
+  Widget _item(data, BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 3),
       padding: EdgeInsets.all(10),
@@ -53,7 +53,47 @@ class BookItem extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 20),
                     child: FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SimpleDialog(
+                                title: Text("确认拼单"),
+                                children: <Widget>[
+                                  Column(
+                                    children: <Widget>[
+                                      Text("您确定要进行和" + data["name"] + "拼单吗"),
+                                      Divider(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          FlatButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            color: Colors.green,
+                                            child: Text("确认"),
+                                          ),
+                                          Container(
+                                            width: 10,
+                                          ),
+                                          FlatButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            color: Colors.grey,
+                                            child: Text("取消"),
+                                          ),
+                                         
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ],
+                              );
+                            });
+                      },
                       child: Text("我要拼单"),
                       color: Colors.green,
                     ),
@@ -81,7 +121,7 @@ class BookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: this.info.map((data) => _item(data)).toList(),
+      children: this.info.map((data) => _item(data, context)).toList(),
     );
     // Container(
     //     child: ListView(
