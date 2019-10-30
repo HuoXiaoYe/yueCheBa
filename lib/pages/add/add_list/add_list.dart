@@ -41,8 +41,6 @@ class _AddListState extends State<AddList> {
                 border: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: Colors.yellow),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                // hintText: "fdasssss",
-                // border: Border.lerp(a, b, t)
               ),
             ),
           ) : Container(),
